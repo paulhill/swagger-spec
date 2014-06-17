@@ -2,35 +2,39 @@
   "models": {
     "Person": {
       "description": "A representation of a person",
-      "required": [
-        "id",
-        "birthDate"
-      ],
       "properties": {
         "id": {
           "type": "integer",
           "format": "int64",
-          "description": "the ID of the user",
-          "readOnly": true
+          "description": "the ID of the user"
         },
         "firstName": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
         },
         "middleInitial": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1
         },
         "lastName": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
         },
         "age": {
           "type": "integer",
           "format": "int32",
-          "min": 0,
-          "readOnly": true
+          "min": 0
         },
         "birthDate": {
           "type": "string",
           "format": "date-time"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
         },
         "primaryResidence": {
           "$ref": "Address"
@@ -41,15 +45,89 @@
             "$ref": "Address"
           }
         }
-      }
+      },
+      "required": [ "id", "firstName", "lastName", "birthDate", "age" ],
+	  "additionalProperties": false
+    },
+    "NewPerson": {
+      "description": "Input data for creation of a person resource (POST)",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middleInitial": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "birthDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "primaryResidence": {
+          "$ref": "Address"
+        },
+        "otherAddresses": {
+          "type": "array",
+          "items": {
+            "$ref": "Address"
+          }
+        }
+      },
+      "required": [ "firstName", "lastName", "birthDate" ],
+	  "additionalProperties": false
+    },
+    "PersonUpdate": {
+      "description": "Input data for update of a person resource (PATCH)",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "middleInitial": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "birthDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "primaryResidence": {
+          "$ref": "Address"
+        },
+        "otherAddresses": {
+          "type": "array",
+          "items": {
+            "$ref": "Address"
+          }
+        }
+      },
+	  "additionalProperties": false
     },
     "Address": {
       "description": "An Address following the convention of http://microformats.org/wiki/hcard",
-      "required": [
-        "locality",
-        "region",
-        "country-name"
-      ],
       "properties": {
         "post-office-box": {
           "type": "string"
@@ -72,7 +150,9 @@
         "country-name": {
           "type": "string"
         }
-      }
+      },
+      "required": [ "locality", "region", "country-name" ],
+      "additionalProperties": false
     }
   }
 }
