@@ -17,39 +17,38 @@
     },
     "cat": {
       "description": "A representation of a cat",
-      "allOf": [{
-        "$ref": "#/definitions/pet",
-        "huntingSkill": {
-          "type": "string",
-          "description": "The measured skill for hunting",
-          "default": "lazy",
-          "enum": [
-            "clueless",
-            "lazy",
-            "adventerous",
-            "aggressive"
-          ]
+      "allOf": [
+        {
+          "$ref": "#/definitions/pet"
         },
-        "required": [
-          "huntingSkill"
-        ]
-      }]
+        {
+          "huntingSkill": {
+            "type": "string",
+            "description": "The measured skill for hunting",
+            "default": "lazy",
+            "enum": [ "clueless", "lazy", "adventerous", "aggressive" ]
+          },
+          "required": [ "huntingSkill" ]
+        }
+      ]
     },
     "dog": {
       "description": "A representation of a dog",
-      "allOf": [{
-        "$ref": "#/definitions/pet",
-        "required": [
-          "packSize"
-        ],
-        "packSize": {
-          "type": "integer",
-          "format": "int32",
-          "description": "the size of the pack the dog is from",
-          "default": 0,
-          "min": 0
+      "allOf": [
+        {
+          "$ref": "#/definitions/pet"
+        },
+        {
+          "required": [ "packSize" ],
+          "packSize": {
+            "type": "integer",
+            "format": "int32",
+            "description": "the size of the pack the dog is from",
+            "default": 0,
+            "min": 0
+          }
         }
-      }]
+      ]
     }
   }
 }
