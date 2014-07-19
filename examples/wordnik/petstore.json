@@ -16,7 +16,7 @@
         "responses": {
           "200": {
             "description": "pet response",
-            "model": {
+            "schema": {
               "type": "array",
               "items": {
                 "$ref": "#/models/Pet"
@@ -30,7 +30,7 @@
           },
           "default": {
             "description": "unexpected error",
-            "model": {
+            "schema": {
               "$ref": "#/models/ErrorModel"
             }
           }
