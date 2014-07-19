@@ -216,8 +216,8 @@
 	},
 
 	"patternProperties": {
-		"^_": {
-			"description": "Any property starting with _ is valid.",
+		"^x-": {
+			"description": "Any property starting with x- is valid.",
 			"additionalProperties": true,
 			"additionalItems": true
 		}
